@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-const initialState = {
+
+interface ClickState {
+    clickCount: number;
+}
+
+const initialState: ClickState = {
     clickCount: 0,
 };
 
