@@ -83,6 +83,28 @@ https://v3.tailwindcss.com/docs/installation
 ### json-server
 https://www.npmjs.com/package/json-server
 
+```bash
+npx json-server ./data/db.json -p 8000
+JSON Server started on PORT :8000
+Press CTRL-C to stop
+Watching ./data/db.json...
+
+♡⸜(˶˃ ᵕ ˂˶)⸝♡
+
+Index:
+http://localhost:8000/
+
+Static files:
+Serving ./public directory if it exists
+
+Endpoints:
+http://localhost:8000/products
+http://localhost:8000/featured_products
+http://localhost:8000/orders
+http://localhost:8000/users
+```
+
+
 ### json-server-auth
 https://www.npmjs.com/package/json-server-auth
 
