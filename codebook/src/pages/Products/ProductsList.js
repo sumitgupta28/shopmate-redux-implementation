@@ -7,21 +7,21 @@ import { useFilter } from "../../context";
 
 export const ProductsList = () => {
   useTitle('Books Collection');
-  const { productList } = useFilter();
-  console.log('useFilter ', productList)
+  const { products, initialProductList } = useFilter();
+  console.log('useFilter ', products)
   const [showFilter, setShowFilter] = useState(false);
-  const [products, setProducts] = useState([]);
   const seachLocation = useLocation().search;
   const searchTerm = new URLSearchParams(seachLocation).get("q")
   useEffect(() => {
     async function fetchProducts() {
       const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
       const data = await response.json();
-      setProducts(data);
+      // setProducts(data);
+      initialProductList(data)
     }
     fetchProducts();
   }
-    , [searchTerm]);
+    , [searchTerm]);  //eslint-disable-line
 
   return (
     <main>
