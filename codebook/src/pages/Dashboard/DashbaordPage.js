@@ -1,4 +1,6 @@
+import { useTitle } from "../../hook/useTitle"
 export const DashbaordPage = () => {
+  useTitle('Books Cart')
   return (
     <main>
       <section>

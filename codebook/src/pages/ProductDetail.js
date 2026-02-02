@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import { StarRating } from "../components/Elements/StarRating";
+import { useTitle } from "../hook/useTitle";
 
 export const ProductDetail = () => {
+  useTitle(' Book Details ')
   const [product, setProduct] = useState({});
   const { id } = useParams();
   console.log("ProductDetail id:", id);
@@ -18,6 +20,7 @@ export const ProductDetail = () => {
   }, [id]);
 
   return (
+
     <main>
       <section>
         <h1 className="mt-10 mb-5 text-4xl text-center font-bold text-gray-900 dark:text-slate-200">{product?.name}</h1>

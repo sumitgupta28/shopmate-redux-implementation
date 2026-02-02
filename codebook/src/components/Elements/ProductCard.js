@@ -3,7 +3,6 @@ import { StarRating } from "./StarRating";
 
 export const ProductCard = ({ product }) => {
     const { id, name, overview, price, rating, poster, best_seller } = product;
-    console.log("ProductCard product:", id, name, overview, price, rating, poster, best_seller);
     return (
         <div className="m-3 max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
             <Link to={`/products/${id}`} className="relative" >
