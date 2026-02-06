@@ -18,16 +18,20 @@ export const filterReducer = (state, action) => {
         case "ONLY_IN_STOCK":
             return { ...state, onlyInStock: payload.onlyInStock }
 
+        case "NOT_IN_STOCK":
+            return { ...state, notInStock: payload.notInStock }
+
         case "CLEAR_FILTER":
             return {
                 ...state,
                 onlyInStock: false,
+                notInStock: false,
                 bestSellerOnly: false,
-                sortBy: null,
+                sortBy: 'nameAsc',
                 ratings: null
             }
 
         default:
-            throw new Error("No Cae Found!");
+            throw new Error("No Case Found!");
     }
 }

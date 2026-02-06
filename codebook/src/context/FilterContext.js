@@ -4,8 +4,9 @@ import { filterReducer } from "../reducers"
 const filterInitialState = {
     productList: [],
     onlyInStock: false,
+    notInStock: false,
     bestSellerOnly: false,
-    sortBy: null,
+    sortBy: 'nameAsc',
     ratings: null
 }
 
@@ -25,6 +26,11 @@ export const FilterProvider = ({ children }) => {
 
     function inStock(products) {
         return state.onlyInStock ? products.filter(product => product.in_stock === true) : products;
+
+    }
+
+    function notInStock(products) {
+        return state.notInStock ? products.filter(product => product.in_stock === false) : products;
     }
 
     function bestSeller(products) {
@@ -32,35 +38,40 @@ export const FilterProvider = ({ children }) => {
     }
 
     function sort(products) {
-
         if (state.sortBy === "lowtohigh") {
             return [...products].sort((a, b) => Number(a.price) - Number(b.price))
         }
         if (state.sortBy === "hightolow") {
             return [...products].sort((a, b) => Number(b.price) - Number(a.price))
         }
+        if (state.sortBy === "nameAsc") {
+            return [...products].sort((a, b) => a.name.localeCompare(b.name))
+        }
+        if (state.sortBy === "nameDes") {
+            return [...products].sort((a, b) => b.name.localeCompare(a.name))
+        }
+
         return products;
     }
 
     function rating(products) {
-        console.log(state.ratings)
-        if (state.ratings === "4STARTABOVE") {
+        if (state.ratings === "4STARABOVE") {
             return products.filter(product => product.rating >= 4)
         }
-        if (state.ratings === "3STARTABOVE") {
+        if (state.ratings === "3STARABOVE") {
             return products.filter(product => product.rating >= 3)
         }
-        if (state.ratings === "2STARTABOVE") {
+        if (state.ratings === "2STARABOVE") {
             return products.filter(product => product.rating >= 2)
         }
-        if (state.ratings === "1STARTABOVE") {
+        if (state.ratings === "1STARABOVE") {
             return products.filter(product => product.rating >= 1)
         }
         return products;
     }
 
 
-    const filteredProductList = rating(sort(inStock(bestSeller(state.productList))));
+    const filteredProductList = rating(sort(notInStock(inStock(bestSeller(state.productList)))));
 
     const value = {
         state,

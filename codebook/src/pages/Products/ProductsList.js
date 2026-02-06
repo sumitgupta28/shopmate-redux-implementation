@@ -14,10 +14,26 @@ export const ProductsList = () => {
   const searchTerm = new URLSearchParams(seachLocation).get("q")
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
-      const data = await response.json();
-      // setProducts(data);
-      initialProductList(data)
+      try {
+        const response = await fetch(`http://localhost:8000/products?name_like=${searchTerm ? searchTerm : ""}`);
+        // Check for HTTP errors (response.ok is true for 2xx status codes)
+        if (!response.ok) {
+          // Throw an error to be caught by the catch block
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        // setProducts(data);
+        initialProductList(data)
+      } catch (error) {
+        // This block catches network errors, URL errors,
+        // and the error thrown for bad HTTP statuses
+
+        console.error('Fetch error:', error.message);
+        // You can handle the error gracefully here, e.g., display a message to the user
+        // Display popup (using alert, or a custom UI modal)
+        alert(`Failed to fetch data: ${error.message}`);
+        return null;
+      }
     }
     fetchProducts();
   }

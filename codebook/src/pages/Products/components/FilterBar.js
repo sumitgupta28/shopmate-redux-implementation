@@ -3,9 +3,6 @@ import { useFilter } from "../../../context";
 export const FilterBar = ({ setShowFilter }) => {
 
     const { state, dispatch } = useFilter();
-
-
-
     return (
         <section className="filter">
             <div id="drawer-disable-body-scrolling" className={`fixed z-40 h-screen p-5 overflow-y-auto bg-white w-72 dark:bg-gray-800 transition-transhtmlForm left-0 top-0 transhtmlForm-none`} tabIndex="-1" aria-labelledby="drawer-disable-body-scrolling-label" aria-modal="true" role="dialog">
@@ -20,30 +17,38 @@ export const FilterBar = ({ setShowFilter }) => {
                         <li className="mt-1 mb-5">
                             <p className="font-semibold my-1">Sort by</p>
                             <div className="flex items-center my-1">
-                                <input id="price-sort-1" onChange={() => dispatch({ type: 'SORT_BY', payload: { sortBy: "lowtohigh" } })} checked={state.sortBy === "lowtohigh" || false} type="radio" value="" name="price-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <input id="price-sort-1" onChange={() => dispatch({ type: 'SORT_BY', payload: { sortBy: "lowtohigh" } })} checked={state.sortBy === "lowtohigh" || false} type="radio" value="" name="sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="price-sort-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price - Low to High</label>
                             </div>
                             <div className="flex items-center my-1">
-                                <input id="price-sort-2" onChange={() => dispatch({ type: 'SORT_BY', payload: { sortBy: "hightolow" } })} checked={state.sortBy === "hightolow" || false} type="radio" value="" name="price-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <input id="price-sort-2" onChange={() => dispatch({ type: 'SORT_BY', payload: { sortBy: "hightolow" } })} checked={state.sortBy === "hightolow" || false} type="radio" value="" name="sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="price-sort-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Price - High to Low</label>
+                            </div>
+                            <div className="flex items-center my-1">
+                                <input id="name-sort-1" onChange={() => dispatch({ type: 'SORT_BY', payload: { sortBy: "nameAsc" } })} checked={state.sortBy === "nameAsc" || false} type="radio" value="" name="sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <label htmlFor="name-sort-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name - Ascending</label>
+                            </div>
+                            <div className="flex items-center my-1">
+                                <input id="name-sort-2" onChange={() => dispatch({ type: 'SORT_BY', payload: { sortBy: "nameDes" } })} checked={state.sortBy === "nameDes" || false} type="radio" value="" name="sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <label htmlFor="name-sort-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name - Descending</label>
                             </div>
                         </li>
                         <li className="mt-1 mb-5">
                             <span className="font-semibold">Rating</span>
                             <div className="flex items-center my-1">
-                                <input id="rating-sort-1" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '4STARSABOVE' } })} checked={state.ratings === "4STARSABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <input id="rating-sort-1" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '4STARABOVE' } })} checked={state.ratings === "4STARABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="rating-sort-1" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">4 Stars & Above</label>
                             </div>
                             <div className="flex items-center my-1">
-                                <input id="rating-sort-2" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '3STARSABOVE' } })} checked={state.ratings === "3STARSABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <input id="rating-sort-2" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '3STARABOVE' } })} checked={state.ratings === "3STARABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="rating-sort-2" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">3 Stars & Above</label>
                             </div>
                             <div className="flex items-center my-1">
-                                <input id="rating-sort-3" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '2STARSABOVE' } })} checked={state.ratings === "2STARSABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <input id="rating-sort-3" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '2STARABOVE' } })} checked={state.ratings === "2STARABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="rating-sort-3" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">2 Stars & Above</label>
                             </div>
                             <div className="flex items-center my-1">
-                                <input id="rating-sort-4" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '1STARSABOVE' } })} checked={state.ratings === "1STARSABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <input id="rating-sort-4" onChange={() => dispatch({ type: 'RATINGS', payload: { ratings: '1STARABOVE' } })} checked={state.ratings === "1STARABOVE" || false} type="radio" value="" name="rating-sort" className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
                                 <label htmlFor="rating-sort-4" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">1 Stars & Above</label>
                             </div>
                         </li>
@@ -55,7 +60,11 @@ export const FilterBar = ({ setShowFilter }) => {
                             </div>
                             <div className="flex items-center my-1">
                                 <input id="only-instock" onChange={() => dispatch({ type: 'ONLY_IN_STOCK', payload: { onlyInStock: !state.onlyInStock } })} checked={state.onlyInStock || false} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
-                                <label htmlFor="only-instock" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">INSTOCK Only</label>
+                                <label htmlFor="only-instock" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">In Stock Only</label>
+                            </div>
+                            <div className="flex items-center my-1">
+                                <input id="not-in-instock" onChange={() => dispatch({ type: 'NOT_IN_STOCK', payload: { notInStock: !state.notInStock } })} checked={state.notInStock || false} type="checkbox" value="" className="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 dark:bg-gray-700 dark:border-gray-600" />
+                                <label htmlFor="not-in-instock" className="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Out Of Stock</label>
                             </div>
                         </li>
                         <li className="mt-1 mb-5 px-1">

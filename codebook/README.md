@@ -108,6 +108,59 @@ http://localhost:8000/users
 ### json-server-auth
 https://www.npmjs.com/package/json-server-auth
 
+#### Start Server with db.json which manage user's info
+```bash
+ npx json-server ./data/db.json -p 8000 -m ./node_modules/json-se
+rver-auth
+
+  \{^_^}/ hi!
+
+  Loading ./data/db.json
+  Loading ./node_modules/json-server-auth
+  Done
+
+  Resources
+  http://localhost:8000/products
+  http://localhost:8000/featured_products
+  http://localhost:8000/orders
+  http://localhost:8000/users
+
+  Home
+  http://localhost:8000
+
+```
+#### Start Server with db.json which manage user's info along with routes.
+
+https://www.npmjs.com/package/json-server-auth#guarded-routes-
+
+```bash
+npx json-server ./data/db.json -m ./node_modules/json-server-auth -r ./data/routes.json -p 8000
+
+  \{^_^}/ hi!
+
+  Loading ./data/db.json
+  Loading ./data/routes.json
+  Loading ./node_modules/json-server-auth
+  Done
+
+  Resources
+  http://localhost:3000/products
+  http://localhost:3000/featured_products
+  http://localhost:3000/orders
+  http://localhost:3000/users
+
+  Other routes
+  /products* -> /444/
+  /featured_products* -> /444/
+  /orders* -> /660/
+  /users* -> /600/
+
+  Home
+  http://localhost:3000
+
+```
+
+
 ### Google Fonts
 https://fonts.google.com/selection/embed
 
@@ -116,3 +169,6 @@ https://icons.getbootstrap.com/#install
 
 ### Flowbite 
 https://flowbite.com/#components
+
+### react-toastify
+https://fkhadra.github.io/react-toastify/introduction/
