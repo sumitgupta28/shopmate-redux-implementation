@@ -1,27 +1,31 @@
 import { useEffect, useState } from "react"
 import { useCart } from "../../../context"
+import { useNavigate } from "react-router-dom";
+import { createOrder, getLoggedInUserDetails } from "../../../services";
+
 
 export const Checkout = ({ setCheckOut }) => {
     const [user, setUser] = useState({})
-    const { total } = useCart();
+    const { total, cartList, clearCart } = useCart();
+    const navigate = useNavigate();
 
-    async function managePayment(params) {
-        setCheckOut(false)
+    async function handleOrderSubmit(event) {
+        event.preventDefault();
+        try {
+            const orderData = await createOrder(cartList, total, user);
+            clearCart();
+            navigate("/order-summary", { state: { orderStatus: true, data: orderData } })
+        } catch (error) {
+            console.error(error);
+            navigate("/order-summary", { state: { orderStatus: false } })
+        }
     }
 
     useEffect(() => {
-        const token = JSON.parse(sessionStorage.getItem("token"));
-        const cbid = JSON.parse(sessionStorage.getItem("cbid"));
-
         async function getUser() {
-            const response = await fetch(`http://localhost:8000/600/users/${cbid}`, {
-                method: "GET",
-                headers: { "Content-Type": "application/json", Authorization: `Bearer ${token}` }
-            });
-            const data = await response.json();
+            const data = await getLoggedInUserDetails();
             setUser(data);
         }
-
         getUser();
     }, []);
 
@@ -41,7 +45,7 @@ export const Checkout = ({ setCheckOut }) => {
                             <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
                                 <i className="bi bi-credit-card mr-2"></i>CARD PAYMENT
                             </h3>
-                            <form onSubmit={managePayment} className="space-y-6" >
+                            <form onSubmit={handleOrderSubmit} className="space-y-6" >
                                 <div>
                                     <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">Name:</label>
                                     <input type="text" name="name" id="name" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:value-gray-400 dark:text-white" value={user.name || ""} disabled required="" />
@@ -67,7 +71,7 @@ export const Checkout = ({ setCheckOut }) => {
                                     ${total}
                                 </p>
                                 <button type="submit" className="w-full text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700" >
-                                    <i className="mr-2 bi bi-lock-fill"></i>PAY NOW
+                                    <i className="mr-2 bi bi-lock-fill"></i>Pay Now!!
                                 </button>
                             </form>
                         </div>

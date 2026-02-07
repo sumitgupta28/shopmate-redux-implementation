@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { ProductCard } from "../../../components/Elements/ProductCard"
+import { getFeaturedProducts } from "../../../services";
 
 export const FeaturedProducts = () => {
 
@@ -8,14 +9,11 @@ export const FeaturedProducts = () => {
 
   useEffect(() => {
     async function fetchProducts() {
-      const response = await fetch('http://localhost:8000/featured_products');
-      const data = await response.json();
-      console.log(data);
+      const data = await getFeaturedProducts();
       setProducts(data);
     }
     fetchProducts();
-  }
-    , []);
+  }, []);
 
   return (
     <section className="my-20">
@@ -30,3 +28,5 @@ export const FeaturedProducts = () => {
     </section>
   )
 }
+
+
