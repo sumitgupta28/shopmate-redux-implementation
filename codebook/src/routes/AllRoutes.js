@@ -15,8 +15,6 @@ export const AllRoutes = () => {
                 <Route path="cart" element={<ProtectedRoute> <CartPage /> </ProtectedRoute>} />
                 <Route path="order-summary" element={<ProtectedRoute> <OrderPage /> </ProtectedRoute>} />
                 <Route path="dashboard" element={<ProtectedRoute> <DashboardPage /> </ProtectedRoute>} />
-
-
             </Routes>
         </>
     )

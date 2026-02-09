@@ -10,9 +10,11 @@ export const DashboardCard = ({ order }) => {
                 onClick={() => setExpanded(!expanded)}
                 className="w-full flex justify-between text-sm m-2 font-bold dark:text-slate-200 hover:opacity-80 transition"
             >
-                <span >Order Id: {order?.id}</span>
+                <span><b>Order Id: </b> {order?.id}</span>
+                <span><b> Date : </b> {order?.created_dt}</span>
+                <span><b> Item Count: </b>{order?.quantity}</span>
                 <span className="flex items-center gap-8">
-                    Total: ${order?.total}
+                    <b>Total:</b> ${order?.total}
                     <i className={`text-lg gap-8 bi ${expanded ? 'bi-dash-circle-fill' : 'bi-plus-circle-fill'}`}></i>
                 </span>
             </button>

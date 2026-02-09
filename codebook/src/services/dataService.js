@@ -21,6 +21,7 @@ export async function createOrder(cartList, total, user) {
         products: cartList,
         total: total,
         quantity: cartList.length,
+        created_dt: new Date(),
         user: {
             name: user.name,
             email: user.email,
